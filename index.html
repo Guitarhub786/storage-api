@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Storage Api</title>
+</head>
+
+<body>
+
+  <h1>The Storage Method</h1>
+
+  <p>This example demonstrates how to use the Storage method to set the value of a specified local storage item.</p>
+
+  <button onclick="userItem()">Set User API</button>
+  <button onclick="createItem()">Set local storage item</button>
+
+  <h2>Get the value</h2>
+
+  <p>Click the button to get the item value:</p>
+
+  <button onclick="readValue()">Get the item values</button>
+  <button onclick="displayItems()">List local storage item</button>
+  <button onclick="deleteItems()">Delete items</button>
+  <button onclick="storageIsTypeof()">Blah!</button>
+
+
+  <p id="demo"></p>
+  <p id="demo2"></p>
+  <p id="demo3"></p>
+
+  <script>
+
+    function deleteItems() {
+      localStorage.clear()
+    }
+
+    function userItem() {
+      apiKey = prompt("Enter API Key:");
+      localStorage.setItem("myApiKey", apiKey)
+    }
+
+    function createItem() {
+      let d = new Date()
+      d.toString() // returns "Sun May 10 2015 19:50:08 GMT-0600 (MDT)"
+      localStorage.setItem("myDate", d)
+    }
+
+    function readValue() {
+
+      if (localStorage.getItem("myApiKey")) {
+        let displayApi = localStorage.getItem("myApiKey")
+        document.getElementById("demo2").innerHTML = displayApi
+      } else {
+        document.getElementById("demo2").innerHTML = "No Api Key in Storage"
+      }
+
+
+      let displayDate = localStorage.getItem("myDate")
+      document.getElementById("demo").innerHTML = displayDate
+    }
+
+    function displayItems() {
+      let l, i;
+      document.getElementById("demo3").innerHTML = "";
+      for (i = 0; i < localStorage.length; i++) {
+        x = localStorage.key(i);
+        document.getElementById("demo3").innerHTML += x + "<br>";
+        console.log(x)
+      }
+    }
+
+    function storageIsTypeof() {
+      pop = prompt("Enter API Key:");
+      console.log("You typed", pop)
+      console.log("Storage is typeof:", typeof (Storage))
+    }
+  </script>
+</body>
+
+</html>
